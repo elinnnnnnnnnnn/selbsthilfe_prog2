@@ -4,7 +4,7 @@ class BankAccount:
     MAX = 100_000
     def __init__(self, identifier):
         self.identifier = identifier
-        self.__balance = 0
+        self.__balance = 0.0
         self.currency = "CHF"
         self.is_open = True
 
@@ -22,7 +22,9 @@ class BankAccount:
                 print("Deposit not possible. Limit of 100000 exceeded.")
             else:
                 self.__balance += amount
+                print(f"Einzahlung von {amount} {self.currency} ")
                 print(f"Your actual Balance is: {self.__balance}{self.currency}.")
+                print(f"+---------------IBAN:{self.identifier}----------------+")
         else:
             print(f"Your account is closed.")
 
@@ -41,7 +43,7 @@ class BankAccount:
 
     def get_balance(self):
         if self.is_open == True:
-            return f"Your actual Balance is: {self.__balance}{self.currency}."
+            return self.__balance
 
 
 def main():

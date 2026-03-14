@@ -1,9 +1,10 @@
-from Ex.banc2 import BankAccount
+from selbsthilfe_prog2.selbsthilfe_prog2.bancAcc_Elin import BankAccount
 
-
+#SavingACC
 class SavingAccount(BankAccount):
     def __init__(self,identifier, interest = 0.001):
         super().__init__(self)
+        self.identifier = identifier
         self.interest = float(interest)
         self.withdrawcost = 0.2
 
@@ -13,8 +14,12 @@ class SavingAccount(BankAccount):
             intr = float(input("Set interest in Prozent"))
             self.interest = intr / 100
 
+#Gibt Zinsen für Computer zurück
     def get_interest(self):
-        return f"Sie haben {self.interest * 100} % Zinsen"
+        return self.interest
+
+    def print_interest(self):
+        return f"Bankacc:{self.identifier} hat {self.interest * 100}% Zinsen"
 
     def withdraw(self, amount):
         if self.is_open == True:
@@ -29,6 +34,7 @@ class SavingAccount(BankAccount):
         else:
             print("Withdraw now possible. Your account is closed.")
 
+#YouthACC
 class YouthAccount(BankAccount):
     def __init__(self,identifier, age, interest = 0.02):
         super().__init__(self)
@@ -63,7 +69,7 @@ def main():
     b1 = YouthAccount("134",23)
     b1.deposit(15000)
     b1.withdraw(200)
-
+    b1.get_balance()
 
 
 if __name__ == "__main__":
