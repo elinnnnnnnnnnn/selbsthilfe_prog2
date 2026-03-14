@@ -22,7 +22,9 @@ class BankAccount:
                 print("Deposit not possible. Limit of 100000 exceeded.")
             else:
                 self.__balance += amount
+                print(f"Einzahlung von {amount} {self.currency} ")
                 print(f"Your actual Balance is: {self.__balance}{self.currency}.")
+                print(f"+---------------IBAN:{self.identifier}----------------+")
         else:
             print(f"Your account is closed.")
 

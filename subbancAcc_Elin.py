@@ -1,6 +1,6 @@
 from selbsthilfe_prog2.selbsthilfe_prog2.bancAcc_Elin import BankAccount
 
-
+#SavingACC
 class SavingAccount(BankAccount):
     def __init__(self,identifier, interest = 0.001):
         super().__init__(self)
@@ -34,6 +34,7 @@ class SavingAccount(BankAccount):
         else:
             print("Withdraw now possible. Your account is closed.")
 
+#YouthACC
 class YouthAccount(BankAccount):
     def __init__(self,identifier, age, interest = 0.02):
         super().__init__(self)
