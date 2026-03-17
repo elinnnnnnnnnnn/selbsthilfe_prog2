@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # This is a sample Python script.
 
 # Press Umschalt+F10 to execute it or replace it with your code.
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
-=======
+
 from selbsthilfe_prog2.selbsthilfe_prog2.clock_Elin import Time as T
 from selbsthilfe_prog2.selbsthilfe_prog2.subbancAcc_Elin import SavingAccount as Sa
 import time as t
@@ -62,4 +62,4 @@ def main():
 
 if __name__ == "__main__":
     main()
->>>>>>> 5bde5e13c87555aa6ad55c06e9cc7edeb47d42d4
+
