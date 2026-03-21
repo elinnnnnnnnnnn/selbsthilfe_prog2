@@ -1,33 +1,15 @@
 
-# This is a sample Python script.
-
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
-from selbsthilfe_prog2.selbsthilfe_prog2.clock_Elin import Time as T
+from selbsthilfe_prog2.selbsthilfe_prog2.clock_Elin import Clock as C
 from selbsthilfe_prog2.selbsthilfe_prog2.subbancAcc_Elin import SavingAccount as Sa
 import time as t
-import datetime
 from dateutil.relativedelta import relativedelta
 
 class Simulation:
 
 #Ein Objektattribut, welches jedem einzelnen Objekt individuell ein Wert zuweist.
-    def __init__(self,IBAN):
-        self.bancacc = Sa(IBAN)
-        self.clock = T()
+    def __init__(self):
+        self.bancacc = 0
+        self.clock = C()
         self.delta = 0
         self.startdate = 0
 
@@ -50,13 +32,15 @@ class Simulation:
             self.bancacc.deposit(newmoney)
             balance = self.bancacc.get_balance()
 
+    def create_Sa(self, start_amount, IBAN):
+        self.bancacc = Sa(IBAN)
+        self.bancacc.deposit(start_amount)
+
 
 
 def main():
-    s1 = Simulation("123")
-    s1.bancacc.deposit(4000)
-    t.sleep(25)
-    s1.actual_balance()
+    s1 = Simulation()
+    s1.create_Sa(400,"123")
 
 
 
