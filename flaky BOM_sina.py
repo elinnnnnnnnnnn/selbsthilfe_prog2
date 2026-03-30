@@ -10,6 +10,7 @@ url = "http://160.85.252.61:32101/"                     # URL abspeichern
 
 
 def fetch_data():
+    wait = 1
     while True:                                         # wird bis zum break wiederholt
         try:
             f = requests.get(url).text                  # Anfrage an Server, .text = Antwort als String
@@ -17,8 +18,8 @@ def fetch_data():
             return data
 
         except:
-            time.sleep(1)                               # pausiert eine s & versucht erneut
-
+            time.sleep(wait)                               # pausiert eine s & versucht erneut
+            wait = wait * 2
 
 def fix_umlauts(text):
     try:
@@ -30,30 +31,37 @@ def fix_umlauts(text):
 def parse_data(data):
     result = []
 
-    for item in data:
-        name = item.get("material")                     # Zugriff Dict mit .get() gibt None wenn Schlüssel fehlt
-        cost = item.get("cost")                         # mit [] müsste man KeyError vorbeugen
-
+    for name, cost in data.items():
         if name is None or cost is None:                # fehlende Werte ignorieren
             continue
 
         try:
             cost = float(cost)
+            if cost <0:
+                continue
         except:
             continue
 
-        name = fix_umlauts(name)
-        result.append((name, cost))
+        name = fix_umlauts(name)                        # Ä,Ö,Ü werden umgewandelt
+        result.append((name, cost))                     # Tupel werden der Liste results hinzugefügt
 
     result.sort()
     return result
 
 
 def print_table(data):
+    total = 0
+    for name, cost in data:
+        print(f"{name} | {cost:.2f}")                   # 2 Dezimalstellen runden
+        total += cost                                   # Totalkosten werden berechnet
+    print("-------+--------")
+    print(f"SUM | {total:.2f}")
 
 
 def main():
     raw = fetch_data()
+    print(raw)
+    print("------------------")
     parsed = parse_data(raw)
     print_table(parsed)
 
