@@ -1,12 +1,11 @@
-
-from selbsthilfe_prog2.selbsthilfe_prog2.clock_Elin import Clock as C
-from selbsthilfe_prog2.selbsthilfe_prog2.subbancAcc_Elin import SavingAccount as Sa
+from selbsthilfe_prog2.selbsthilfe_prog2.Clock_Elin import Clock as C
+from selbsthilfe_prog2.selbsthilfe_prog2.SubBancAcc_Elin import SavingAccount as Sa
 import time as t
 from dateutil.relativedelta import relativedelta
 
 class Simulation:
 
-#Ein Objektattribut, welches jedem einzelnen Objekt individuell ein Wert zuweist.
+
     def __init__(self):
         self.bancacc = 0
         self.clock = C()
@@ -32,15 +31,21 @@ class Simulation:
             self.bancacc.deposit(newmoney)
             balance = self.bancacc.get_balance()
 
+#create acc sollte in bancapplication und sparkonto hat zeitkomponente
     def create_Sa(self, start_amount, IBAN):
         self.bancacc = Sa(IBAN)
         self.bancacc.deposit(start_amount)
+
+    def create_Ya(self):
+        pass
 
 
 
 def main():
     s1 = Simulation()
     s1.create_Sa(400,"123")
+    t.sleep(12)
+    s1.actual_balance()
 
 
 

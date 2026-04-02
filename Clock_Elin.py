@@ -1,7 +1,7 @@
 from datetime import datetime as dt
 import time as t
 
-class Time:
+class Clock:
     TIMEFORMONTH = 1
     def __init__(self):
         self.start = t.time()
@@ -28,7 +28,7 @@ class Time:
 
 
 def main():
-    t1 = Time()
+    t1 = Clock()
     print(t1.get_date())
 
 if __name__ == "__main__":

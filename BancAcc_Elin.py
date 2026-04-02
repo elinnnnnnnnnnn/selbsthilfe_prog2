@@ -8,8 +8,6 @@ class BankAccount:
         self.currency = "CHF"
         self.is_open = True
 
-    def set_status(self):
-        pass
     def status(self):
         if self.is_open:
             return f"The Bank Account {self.identifier} is open."
@@ -20,13 +18,16 @@ class BankAccount:
         if self.is_open:
             if self.__balance + amount > self.MAX:
                 print("Deposit not possible. Limit of 100000 exceeded.")
+                return None
             else:
                 self.__balance += amount
                 print(f"Einzahlung von {amount} {self.currency} ")
                 print(f"Your actual Balance is: {self.__balance}{self.currency}.")
                 print(f"+---------------IBAN:{self.identifier}----------------+")
+                return self.__balance
         else:
             print(f"Your account is closed.")
+            return None
 
 
     def withdraw(self, amount):
@@ -34,12 +35,13 @@ class BankAccount:
             if self.__balance - amount > 0:
                 self.__balance -= amount
                 print(f"Your actual Balance is: {self.__balance}{self.currency}.")
-
+                return self.__balance
             else:
                 print("Withdraw not possible. Balance would be below zero.")
+                return None
         else:
             print("Withdraw not possible. Your account is closed.")
-
+            return None
 
     def get_balance(self):
         if self.is_open == True:

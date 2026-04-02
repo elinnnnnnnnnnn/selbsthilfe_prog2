@@ -1,4 +1,4 @@
-from selbsthilfe_prog2.selbsthilfe_prog2.bancAcc_Elin import BankAccount
+from selbsthilfe_prog2.selbsthilfe_prog2.BancAcc_Elin import BankAccount
 
 #SavingACC
 class SavingAccount(BankAccount):
@@ -23,16 +23,22 @@ class SavingAccount(BankAccount):
 
     def withdraw(self, amount):
         if self.is_open == True:
-            if self.balance - amount > 0:
-                self.balance -= amount
-                print(f"Your actual Balance is: {self.balance}{self.currency}.")
-
+            if self.__balance - amount > 0:
+                self.__balance -= amount
+                print(f"Your actual Balance is: {self.__balance}{self.currency}.")
+                return self.__balance
             else:
                 namount = (amount + amount * self.withdrawcost)
-                self.balance -= namount
+                self.__balance -= namount
                 print(f"Your balance is below zero, every withdraw costs additional {self.withdrawcost *100}% -> {namount} ")
+                return self.__balance
         else:
             print("Withdraw now possible. Your account is closed.")
+            return None
+
+
+
+
 
 #YouthACC
 class YouthAccount(BankAccount):
