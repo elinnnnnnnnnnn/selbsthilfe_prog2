@@ -54,9 +54,12 @@ class StatisticsApp():
         max_cost_women = self.df["Frauen.1"].max()
         idx = self.df["Frauen.1"].idxmax()
         altersklasse = self.df.loc[idx, "Altersklasse"]
+        avg_cost_women = self.df["Frauen.1"].mean()
 
         print(f"Höchste Kosten Frauen: {altersklasse}")
         print(f"Wert: {max_cost_women}")
+        print(f"Durchschnitt Frauen: {avg_cost_women}")
+        print("Die Grafik zeigt die Gesundheitskosten pro Altersklasse bei Frauen.")
 
 
     def run(self):
@@ -73,9 +76,11 @@ class StatisticsApp():
         # print(self.df[["Altersklasse", "Männer.1", "Frauen.1"]].head(10))
 
     def visualize_data(self):
+        avg = self.df["Frauen.1"].mean()
         self.df.plot(x="Altersklasse", y="Frauen.1", kind="bar")
+        plt.axhline(avg)  # Durchschnittslinie
+        plt.title("Gesundheitskosten Frauen nach Altersklasse")
         plt.show()
-
 
 
 if __name__ == "__main__":
